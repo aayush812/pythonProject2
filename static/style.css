@@ -1,0 +1,150 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background-color: #004d99;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo {
+    max-width: 180px;
+    height: auto;
+}
+
+.title-container {
+    margin: 40px 0;
+    animation: fadeInDown 1s ease both;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.main h1 {
+    font-size: 2.5rem;
+    color: #004d99;
+    font-weight: 700;
+    margin: 0;
+}
+
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.section-button {
+    background-color: #F6851F;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 1rem;
+    border-radius: 0.2; /* Square buttons */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    outline: none;
+    font-weight: 400;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transform: translateZ(0); /* GPU acceleration for smoother animations */
+    height: 150px; /* Square shape */
+}
+
+.section-button:hover {
+    background-color: #005a99;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transform: translateY(-3px);
+}
+
+@media screen and (max-width: 768px) {
+    .button-container {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    .section-button {
+        padding: 10px;
+        height: 100px;
+    }
+}
+
+.icon {
+    margin-right: 8px; /* Adds spacing between icon and text */
+}
+
+.section-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-button i {
+    margin-right: 10px; /* Adjust the space between the icon and the text */
+}
+
+/* ... existing CSS ... */
+
+.form-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #004d99;
+}
+
+.form-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.form-inputs input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.submit-button {
+    background-color: #F6851F;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #005a99;
+}

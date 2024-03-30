@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Batch</title>
+</head>
+<body>
+    <form action="/submit_line_traveller" method="post">
+        <input type="hidden" name="batch_no" value="{{ batch_no }}">
+        <input type="date" name="date" placeholder="Date">
+        <input type="text" name="supplier_b_no" placeholder="Supplier B.No">
+        <!-- Add other input fields -->
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

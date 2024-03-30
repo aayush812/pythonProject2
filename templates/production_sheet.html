@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Production Sheet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='batch_sheet_style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="/dashboard"><img src="{{ url_for('static', filename='minsan_logo-light.png') }}" alt="Minsan Chemtek Logo" class="logo"></a>
+    </header>
+    <main>
+        <div class="title-container">
+            <h1>Production Sheet</h1>
+        </div>
+        <div class="form-container">
+            <button onclick="location.href='/view_production'">View Entries</button>
+            <form action="/submit_production" method="post">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required><br><br>
+
+                <label for="item">Item:</label>
+                <select id="item" name="item" required>
+                    <option value="">Select an Item</option>
+                    {% for item in unique_items %}
+                        <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select><br><br>
+
+                <label for="qty">Qty:</label>
+                <input type="number" id="qty" name="qty" min="1" required><br><br>
+
+                <label for="batch_no">Batch No:</label>
+                <select id="batch_no" name="batch_no" required>
+                    <option value="">Select a Batch No</option>
+                    {% for batch_no in unique_batch %}
+                        <option value="{{ batch_no }}">{{ batch_no }}</option>
+                    {% endfor %}
+                </select><br><br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='production_script.js') }}"></script>
+</body>
+</html>

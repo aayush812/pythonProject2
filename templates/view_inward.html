@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Inward Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='batch_sheet_style.css') }}">
+    <!-- Other head content -->
+</head>
+<body>
+    <!-- Your header and main content -->
+    <header>
+       <a href="/dashboard"><img src="{{ url_for('static', filename='minsan_logo-light.png') }}" alt="Minsan Chemtek Logo" class="logo"></a>
+    </header>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Vendor Name</th>
+                <th>Truck No</th>
+                <th>Batch No</th>
+                <th>Type of Entry</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+            <tr>
+                <td>{{ entry['Date'] }}</td>
+                <td>{{ entry['Item'] }}</td>
+                <td>{{ entry['Qty'] }}</td>
+                <td>{{ entry['Vendor Name'] }}</td>
+                <td>{{ entry['Truck No'] }}</td>
+                <td>{{ entry['Batch No'] }}</td>
+                <td>{{ entry['Type of Entry'] }}</td>
+                <td>{{ entry['Type'] }}</td>
+                <td>
+                    <form action="{{ url_for('delete_inward', id=entry['_id']) }}" method="post">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="8">No data available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Additional body content -->
+
+</body>
+</html>

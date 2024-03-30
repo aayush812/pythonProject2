@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Batch Data</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Batch No</th>
+            <!-- Add other headers -->
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row['Batch No'] }}</td>
+            <!-- Add other data cells -->
+            <td><a href="/edit_line_traveller/{{ row['Batch No'] }}">Edit</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+</head>
+
+<body>
+    <header>
+        <a href="/dashboard"><img src="{{ url_for('static', filename='minsan_logo-light.png') }}" alt="Minsan Chemtek Logo" class="logo"></a>
+    </header>
+    <main>
+        <div class="title-container">
+            <h1>ERP Dashboard</h1>
+        </div>
+        <div class="button-container">
+            <button class="section-button" onclick="location.href='/batch_sheet'"><i class="fas fa-clipboard-list icon"></i>Batch Entry</button>
+            <button class="section-button" onclick="location.href='/inward'"><i class="fas fa-sign-in-alt icon"></i>Inward Entry</button>
+            <button class="section-button" onclick="location.href='/production_sheet'"><i class="fas fa-industry icon"></i>Production Entry</button>
+            <button class="section-button" onclick="location.href='/dispatch'"><i class="fas fa-truck icon"></i>Dispatch Entry</button>
+            <button class="section-button" onclick="location.href='/dashboard'"><i class="fas fa-chart-bar icon"></i>Dashboards</button>
+            <button class="section-button" onclick="location.href='/line_traveller'"><i class="fas fa-map-signs icon"></i>Traveller Sheet</button>
+            <button class="section-button" onclick="location.href='/monthly_planning'"><i class="fas fa-calendar-alt icon"></i>Monthly Planning</button>
+            <button class="section-button" onclick="location.href='/open_batch'"><i class="fas fa-folder-open icon"></i>Open Batch</button>
+            <button class="section-button" onclick="location.href='/net_inventory_raw_material'"><i class="fas fa-boxes icon"></i>Net Inventory (Raw Materials)</button>
+            <button class="section-button" onclick="location.href='/net_inventory_production'"><i class="fas fa-box icon"></i>Net Inventory (Finished Goods)</button>
+        </div>
+    </main>
+</body>
+</html>

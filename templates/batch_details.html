@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='batch_sheet_style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- ... meta tags, CSS links ... -->
+    <title>Batch Details</title>
+    <!-- ... meta tags, CSS links ... -->
+</head>
+<body>
+    <!-- ... header, navigation, etc. ... -->
+    <main>
+        <header>
+            <a href="/dashboard"><img src="{{ url_for('static', filename='minsan_logo-light.png') }}" alt="Minsan Chemtek Logo" class="logo"></a>
+        </header>
+        <div class="title-container">
+            <h1>Batch Details</h1>
+        </div>
+
+        <table class="form-container">
+            <tr>
+                <th>Batch No</th>
+                <th>Qty (pieces)</th>
+                <th>Mfg Date</th>
+                <th>Qty (kgs / ltr)</th>
+                <th>Type</th>
+            </tr>
+            {% for entry in combined_data %}
+            <tr>
+                <td>{{ entry['Batch No'] }}</td>
+                <td>{{ entry['Qty (pieces)'] }}</td>
+                <td>{{ entry['Mfg Date'] }}</td>
+                <td>{{ entry['Qty (kgs / ltr)'] }}</td>
+                <td>{{ entry['Type'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
+</body>
+</html>

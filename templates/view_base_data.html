@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Base Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='batch_sheet_style.css') }}">
+    <!-- Other head content -->
+</head>
+<body>
+    <!-- Your header and main content -->
+    <header>
+        <a href="/dashboard"><img src="{{ url_for('static', filename='minsan_logo-light.png') }}" alt="Minsan Chemtek Logo" class="logo"></a>
+    </header>
+    <table>
+        <thead>
+
+            <tr>
+                <th>Batch No</th>
+                <th>Qty (pieces)</th>
+                <th>Mfg Date</th>
+                <th>MRP per unit</th>
+                <th>Qty (kgs / ltr)</th>
+                <th>Exp Date</th>
+                <th>USP kg / ltr basis</th>
+                <th>Bucket / Label</th>
+                <th>Mono Cartons</th>
+                <th>Box Label</th>
+                <th>MRP per box</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+            <tr>
+                <td>{{ entry['Batch No'] }}</td>
+                <td>{{ entry['Qty (pieces)'] }}</td>
+                <td>{{ entry['Mfg Date'] }}</td>
+                <td>{{ entry['MRP per unit'] }}</td>
+                <td>{{ entry['Qty (kgs / ltr)'] }}</td>
+                <td>{{ entry['Exp Date'] }}</td>
+                <td>{{ entry['USP kg / ltr basis'] }}</td>
+                <td>{{ entry['Bucket / Label'] }}</td>
+                <td>{{ entry['Mono Cartons'] }}</td>
+                <td>{{ entry['Box Label'] }}</td>
+                <td>{{ entry['MRP per box'] }}</td>
+                <td>
+                    <form action="{{ url_for('delete_base_data', id=entry['_id']) }}" method="post">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="12">No data available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Additional body content -->
+
+</body>
+</html>

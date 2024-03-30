@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ... meta tags, CSS links ... -->
+    <title>Net Inventory - Production</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='NI_Raw_material.csss') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="/dashboard"><img src="{{ url_for('static', filename='minsan_logo-light.png') }}" alt="Minsan Chemtek Logo" class="logo"></a>
+    </header>
+    <!-- ... header, navigation, etc. ... -->
+    <main>
+
+        <div class="title-container">
+            <h1>Net Inventory - Production</h1>
+            <button class="download-button" onclick="downloadExcel()">Download as Excel</button>
+        </div>
+        <table class="inventory-table">
+            <tr>
+                <th>Item</th>
+                <th>Total Quantity</th>
+            </tr>
+            {% for item in items %}
+            <tr onclick="window.location='{{ url_for('item_details_finished_goods', item_name=item.keys()|list|first) }}'">
+                <td>{{ item.keys()|list|first }}</td>
+                <td>{{ item.values()|list|first }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
+    <script>
+        function downloadExcel() {
+            const table = document.querySelector('.inventory-table');
+            let csvContent = "data:text/csv;charset=utf-8,";
+
+            for (let i = 0; i < table.rows.length; i++) {
+                let row = [], cols = table.rows[i].querySelectorAll("td, th");
+
+                for (let j = 0; j < cols.length; j++) {
+                    row.push(cols[j].innerText);
+                }
+
+                csvContent += row.join(",") + "\r\n";
+            }
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "inventory_summary.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+    </script>
+</body>
+</html>

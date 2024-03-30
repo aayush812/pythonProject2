@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planning Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='NI_Raw_material.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Add CSS and JS here -->
+</head>
+<body>
+    <header>
+        <a href="/dashboard"><img src="{{ url_for('static', filename='minsan_logo-light.png') }}" alt="Minsan Chemtek Logo" class="logo"></a>
+    </header>
+    <div class="title-container">
+            <h1>Planning Results</h1>
+            <button class="download-button" onclick="downloadExcel()">Download as Excel</button>
+    </div>
+
+    <table class="inventory-table">
+        <thead>
+            <tr>
+                <th>Column Name</th>
+                <th>Total Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for col_name, total_qty in results.items() %}
+            <tr>
+                <td>{{ col_name }}</td>
+                <td>{{ total_qty }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+    <script>
+        function downloadExcel() {
+            const table = document.querySelector('.inventory-table');
+            let csvContent = "data:text/csv;charset=utf-8,";
+
+            for (let i = 0; i < table.rows.length; i++) {
+                let row = [], cols = table.rows[i].querySelectorAll("td, th");
+
+                for (let j = 0; j < cols.length; j++) {
+                    row.push(cols[j].innerText);
+                }
+
+                csvContent += row.join(",") + "\r\n";
+            }
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "Monthly dispatch report liquid.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+    </script>
+</html>

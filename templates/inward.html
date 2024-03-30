@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inward Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='batch_sheet_style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="/dashboard"><img src="{{ url_for('static', filename='minsan_logo-light.png') }}" alt="Minsan Chemtek Logo" class="logo"></a>
+    </header>
+    <main>
+        <div class="title-container">
+            <h1>Inward Form</h1>
+        </div>
+        <div class="form-container">
+            <button onclick="location.href='/view_inward'">View Entries</button>
+            <form id="inward_form" action="/submit_inward" method="post">
+                    <label for="date">Date:</label>
+                    <select id="date" name="date">
+                        {% for key, value in date_options.items() %}
+                            <option value="{{ value }}">{{ value }}</option>
+                        {% endfor %}
+                    </select><br><br>
+
+                    <label for="item">Item:</label>
+                    <select id="item" name="item">
+                        {% for item in item_options %}
+                            <option value="{{ item }}">{{ item }}</option>
+                        {% endfor %}
+                    </select><br><br>
+
+                    <label for="qty">Qty:</label>
+                    <input type="text" id="qty" name="qty" required><br><br>
+
+                    <label for="vendor_name">Vendor Name:</label>
+                    <input type="text" id="vendor_name" name="vendor_name" required><br><br>
+
+                    <label for="truck_no">Truck No:</label>
+                    <input type="text" id="truck_no" name="truck_no" required><br><br>
+
+                    <label for="batch_no">Batch No:</label>
+                    <input type="text" id="batch_no" name="batch_no" required><br><br>
+
+                    <label for="invoice_challan_no">Invoice No/ Challan No:</label>
+                    <input type="text" id="invoice_challan_no" name="invoice_challan_no"><br><br>
+
+                    <label for="entry_type">Type of Entry:</label>
+                    <select id="entry_type" name="entry_type">
+                        <option value="Positive">Positive</option>
+                        <option value="Purchase return">Purchase return</option>
+                        <option value="Wastage">Wastage</option>
+                    </select><br><br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
+
+

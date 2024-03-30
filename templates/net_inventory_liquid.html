@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Net Inventory - Liquid</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='NI_Raw_material.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Add your CSS styling here -->
+</head>
+<body>
+    <header>
+        <a href="/dashboard"><img src="{{ url_for('static', filename='minsan_logo-light.png') }}" alt="Minsan Chemtek Logo" class="logo"></a>
+    </header>
+    <div class="title-container">
+        <h1>Net Inventory - Liquid</h1>
+        <button class="download-button" onclick="downloadExcel()">Download as Excel</button>
+    </div>
+
+    <table class="inventory-table">
+        <thead>
+            <tr>
+                <th>PACK SIZE</th>
+                <th>BRAND SL No.of Case</th>
+                <th>BRAND SL Per Ltr.</th>
+                <th>WILICON No.of Case</th>
+                <th>WILICON Per Ltr.</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in table_data %}
+            <tr>
+                <td>{{ row['PACK SIZE'] }}</td>
+                <td>{{ row['BRAND SL No.of Case'] }}</td>
+                <td>{{ row['BRAND SL Per Ltr.'] }}</td>
+                <td>{{ row['WILICON No.of Case'] }}</td>
+                <td>{{ row['WILICON Per Ltr.'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        function downloadExcel() {
+            const table = document.querySelector('.inventory-table');
+            let csvContent = "data:text/csv;charset=utf-8,";
+
+            for (let i = 0; i < table.rows.length; i++) {
+                let row = [], cols = table.rows[i].querySelectorAll("td, th");
+
+                for (let j = 0; j < cols.length; j++) {
+                    row.push(cols[j].innerText);
+                }
+
+                csvContent += row.join(",") + "\r\n";
+            }
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "inventory_summary.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+    </script>
+</body>
+</html>

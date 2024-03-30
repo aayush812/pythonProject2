@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Batch Sheet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='batch_sheet_style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script href="{{ url_for('static', filename='batch_sheet.js') }}"></script>
+</head>
+<body>
+    <header>
+        <a href="/dashboard"><img src="{{ url_for('static', filename='minsan_logo-light.png') }}" alt="Minsan Chemtek Logo" class="logo"></a>
+    </header>
+    <main>
+        <div class="title-container">
+            <h1>Batch-Sheet</h1>
+        </div>
+        <div class="form-container">
+            <button onclick="location.href='/view_base_data'">View Entries</button>
+            <form id="product_form" action="/submit_data_batch_sheet" method="post">
+                <label for="batch_no">Batch No:</label>
+                <input type="text" id="batch_no" name="batch_no" required>
+                <label for="mfg_date">Mfg Date:</label>
+                <input type="date" id="mfg_date" name="mfg_date" required>
+                <label for="qty_kgs_ltr">Qty (kgs / ltr):</label>
+                <input type="text" id="qty_kgs_ltr" name="qty_kgs_ltr" required>
+                <label for="qty_pieces">Qty (pieces):</label>
+                <select id="qty_pieces" name="qty_pieces" required>
+                    <option value="">Select Quantity</option>
+                    {% for qty in qty_options %}
+                        <option value="{{ qty }}">{{ qty }}</option>
+                    {% endfor %}
+                </select>
+                <!-- New hidden inputs for the data to be saved -->
+                <input type="hidden" name="mrp_per_unit" id="mrp_per_unit" />
+                <input type="hidden" name="exp_date" id="exp_date" />
+                <input type="hidden" name="usp_kg_ltr_basis" id="usp_kg_ltr_basis" />
+                <input type="hidden" name="bucket_label" id="bucket_label" />
+                <input type="hidden" name="mono_cartons" id="mono_cartons" />
+                <input type="hidden" name="box_label" id="box_label" />
+                <input type="hidden" name="mrp_per_box" id="mrp_per_box" />
+                <!-- Submit button -->
+                <button type="submit">Submit Data</button>
+            </form>
+
+        </div>
+    </main>
+
+</body>
+</html>
